@@ -4,3 +4,4 @@ which gpg //Display the path
 of the executable file in the system
 gpg --full-generate-key //Genearte the
 new keys
+gpg --list-keys //List all our keys
