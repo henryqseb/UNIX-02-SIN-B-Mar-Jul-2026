@@ -16,6 +16,7 @@ ls/etc
 sudo touch /etc/prueba.txt
 #Error: Only the administrator (using sudo) 
 #can create files in /etc because it contains critical configurations
-
+mkdir ~/mi_carpeta 
+#Create a folder called 'my_folder' in your Home directory
 
 
