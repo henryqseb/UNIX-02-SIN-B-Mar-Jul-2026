@@ -13,5 +13,9 @@ ls -l hola.sh
 
 ls/etc
 #List all system configuration files
+sudo touch /etc/prueba.txt
+#Error: Only the administrator (using sudo) 
+#can create files in /etc because it contains critical configurations
+
 
 
