@@ -6,3 +6,9 @@ cat hola.sh
 #It reads and shows me the command which was saved in the file
 ./hola.sh
 #Our command is not executed, resulting in an access denied result.
+
+Solution
+ls -l hola.sh
+#a way to quickly verify who owns a file
+
+
