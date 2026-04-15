@@ -11,4 +11,7 @@ Solution
 ls -l hola.sh
 #a way to quickly verify who owns a file
 
+ls/etc
+#List all system configuration files
+
 
