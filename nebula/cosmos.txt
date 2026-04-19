@@ -1,0 +1,6 @@
+=== REPORTE DE TELEMETRÍA — NEBULA-01 ===
+Timestamp     : 2025-04-15T08:32:11Z
+Sensor        : COSMOS-7
+Temperatura   : 4.2 K
+Estado        : Nominal
+Clasificación : CONFIDENCIAL
