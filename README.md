@@ -1,3 +1,4 @@
+
 # EVALUACIÓN PRÁCTICA — Versión 1 (Grupo 1)
 ### Proyecto: `nebula` | Usuario adicional: `aurora` | Duración: 40 min
 
