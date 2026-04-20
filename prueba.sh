@@ -4,4 +4,5 @@ git mv nebula/registros nebula/bitacoras
 #Crear el directorio faltante
 mkdir nebula/borradores
 #preparar los cambios
+Ejercicio 2
 
