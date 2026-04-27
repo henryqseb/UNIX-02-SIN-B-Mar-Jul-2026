@@ -8,4 +8,9 @@ umask 027
 touch archivo2
 mkdir directorio2
 ls -l
+#Part 3
+umask 077
+touch secreto.txt
+mkdir privado
+#Commands
 
