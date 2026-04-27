@@ -24,3 +24,13 @@ ls-l mi_archivo
 sudo useradd -m -s /usr/bin/zsh luna
 sudo chown luna mi_arcihvo
 ls -l mi_archivo
+#The user "luna" is created, ownership of the file is assigned to it, and its new attributes are verified.
+
+#Ejercice
+
+mkdir .p proyecto/sub
+touch proyecto/readme proyecto/Sub/datos
+ $ sudo chown -R luna:grupo_test proyecto
+ ls -lR proyecto
+ #The structure is created, the files are defined, ownership of the project and its 
+ #contents is assigned to the specified user and group, and the resulting directory tree is displayed.
