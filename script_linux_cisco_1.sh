@@ -45,3 +45,5 @@ su
 #switching users during a terminal session
 su -l
 #The most complete way to become a superuser
+sudo
+#It allows a normal user to execute commands with superuser security privileges.
