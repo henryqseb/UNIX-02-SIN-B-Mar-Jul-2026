@@ -7,3 +7,5 @@ aptitude moo
 #Content 2.2
 ls -l
 #list with more specific details of the files and folders
+ls -r
+#List the files and folders in reverse order from z to a
