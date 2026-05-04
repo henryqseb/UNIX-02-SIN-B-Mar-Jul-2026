@@ -23,3 +23,5 @@ cd
 #moving between folders from the terminal.
 cd /
 #It leads to the root of the entire file system.
+cd ..
+#go back one level in the directory.
