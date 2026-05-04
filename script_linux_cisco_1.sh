@@ -39,3 +39,7 @@ ls -lrS /var/log
 #Detailed list of system logs, sorted by size in ascending order
 ls -r /var/log
 #List of log files in reverse alphabetical order
+
+#Content 6
+su
+#switching users during a terminal session
