@@ -17,3 +17,7 @@ aptitude -vv moo
 #Content 3
 pwd
 #Print Working directory The terminal responds with the absolute path of the folder we are in
+
+#Content 4
+cd
+#moving between folders from the terminal.
