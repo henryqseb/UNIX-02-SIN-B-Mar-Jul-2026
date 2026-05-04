@@ -13,3 +13,9 @@ groups
 groups $USER
 #Use the $USER environment variable containing your 
 #username as an argument to search for information in /etc/group.
+id -u
+#User ID
+id -g
+#Group ID principal
+id -G
+#All the groups
