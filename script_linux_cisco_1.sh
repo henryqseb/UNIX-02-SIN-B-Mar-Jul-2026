@@ -4,3 +4,6 @@ ls
 #Content 2.1
 aptitude moo
 #Easter egg
+#Content 2.2
+ls -l
+#list with more specific details of the files and folders
