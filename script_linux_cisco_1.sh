@@ -21,3 +21,5 @@ pwd
 #Content 4
 cd
 #moving between folders from the terminal.
+cd /
+#It leads to the root of the entire file system.
