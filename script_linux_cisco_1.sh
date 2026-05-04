@@ -31,3 +31,5 @@ cd ~
 #Content 5
 ls -l /var/log
 #It displays a detailed list with permissions, sizes, and dates of all system log files and events.
+ls -lt /var/log
+#A detailed list of system logs, but ordered so that the most recently modified files appear first.
