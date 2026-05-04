@@ -51,3 +51,5 @@ sudo
 #Content 8
 ls -l script_linux_cisco_1.sh
 #specific details of that particular file, instead of listing the entire directory.
+chmod u+x script_linux_cisco_1.sh
+#grants execution permission (x) exclusively to the owner user (u) on that specific file.
