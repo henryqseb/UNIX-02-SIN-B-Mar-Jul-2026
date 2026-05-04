@@ -19,3 +19,9 @@ id -g
 #Group ID principal
 id -G
 #All the groups
+cat /etc/group | head -n 5
+#It displays the first five lines of the /etc/group file,
+#exposing the basic configuration of the first five user groups defined in the system.
+cat /etc/gshadow | head -n 5
+#Display the first five lines of the /etc/gshadow 
+#file, which contains the encrypted passwords and administrative information for the system groups.
