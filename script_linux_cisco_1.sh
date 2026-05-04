@@ -25,3 +25,5 @@ cd /
 #It leads to the root of the entire file system.
 cd ..
 #go back one level in the directory.
+cd ~
+#Go to my personal directory with in codespace
