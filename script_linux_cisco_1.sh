@@ -47,3 +47,7 @@ su -l
 #The most complete way to become a superuser
 sudo
 #It allows a normal user to execute commands with superuser security privileges.
+
+#Content 8
+ls -l script_linux_cisco_1.sh
+#specific details of that particular file, instead of listing the entire directory.
