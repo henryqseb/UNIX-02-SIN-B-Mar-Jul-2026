@@ -9,3 +9,5 @@ ls -l
 #list with more specific details of the files and folders
 ls -r
 #List the files and folders in reverse order from z to a
+aptitude -v moo
+#There really are no Easter eggs in this show
