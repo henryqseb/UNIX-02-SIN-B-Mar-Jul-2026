@@ -13,3 +13,7 @@ aptitude -v moo
 #There really are no Easter eggs in this show
 aptitude -vv moo
 #I've already told you there are no Easter eggs in this program
+
+#Content 3
+pwd
+#Print Working directory The terminal responds with the absolute path of the folder we are in
