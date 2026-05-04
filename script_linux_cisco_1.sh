@@ -27,3 +27,7 @@ cd ..
 #go back one level in the directory.
 cd ~
 #Go to my personal directory with in codespace
+
+#Content 5
+ls -l /var/log
+#It displays a detailed list with permissions, sizes, and dates of all system log files and events.
