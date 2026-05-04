@@ -5,3 +5,11 @@ id
 cat /etc/passwd | head -10
 #Displays the first 10 lines of /etc/passwd, the file that lists system 
 #accounts, their IDs, home folders, and startup shells.
+cat /etc/group | head -10
+#Read the first ten lines of the /etc/group file 
+#to show the first ten user groups defined on the system.
+groups
+#Displays the names of the groups to which your current user belongs
+groups $USER
+#Use the $USER environment variable containing your 
+#username as an argument to search for information in /etc/group.
