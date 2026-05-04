@@ -11,3 +11,5 @@ ls -r
 #List the files and folders in reverse order from z to a
 aptitude -v moo
 #There really are no Easter eggs in this show
+aptitude -vv moo
+#I've already told you there are no Easter eggs in this program
