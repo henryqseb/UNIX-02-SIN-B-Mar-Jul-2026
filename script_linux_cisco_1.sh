@@ -43,3 +43,5 @@ ls -r /var/log
 #Content 6
 su
 #switching users during a terminal session
+su -l
+#The most complete way to become a superuser
