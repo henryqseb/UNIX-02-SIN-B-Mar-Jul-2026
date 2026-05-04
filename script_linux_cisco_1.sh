@@ -37,3 +37,5 @@ ls -l -l -S /var/log
 #detailed list of system records ordered from largest to smallest
 ls -lrS /var/log
 #Detailed list of system logs, sorted by size in ascending order
+ls -r /var/log
+#List of log files in reverse alphabetical order
