@@ -79,3 +79,6 @@ usermod -aG grupo_temporal $USER root
 usermod -G desarrolladores $USER roo
 #this removes all secondary groups except "desarroladores"
 id $USER #lost all other groups
+#Restore
+usermod -aG diseno,marketing,grupo_temporal $USER root
+id $USER #restored
