@@ -40,3 +40,11 @@ grep "desarrolladores\|operaciones\|serivcios_web" /etc/goup
 grep -E "desarrolladores|operaciones|servicios_web" /etc/group
 #View principal options
 groupadd --help
+#see the GID range in the system
+grep "GID_MIN\|GID_MAX\|SYS_GID" /etc/login.defs
+#System groups have a GID lower than the user minimum
+#In UBUNTU typically:
+#SYS_GID:MIN = 100
+#SYS_GID_MAX = 999
+#GID_MIN = 1000
+#GID_MAX = 60000
