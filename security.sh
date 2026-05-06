@@ -82,3 +82,11 @@ id $USER #lost all other groups
 #Restore
 usermod -aG diseno,marketing,grupo_temporal $USER root
 id $USER #restored
+#prepare the practice scenario
+mkdir -p ~/lab_chgrp/{proyectos,reportes,scripts}
+touch ~/lab_chgrp/proyectos/app.py
+touch ~/lab_chgrp/proyectos/config.json
+touch ~/lab_chgrp/reportes/informe.txt
+touch ~/lab_chgrp/scripts/deploy.sh
+
+
