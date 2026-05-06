@@ -64,3 +64,11 @@ id
 #Add a user to a group with usermod (low level)
 sudo usermod -aG desarrolladores $USER
 sudo usermod -aG diseño $USER
+
+#verify the change in /etc/group
+grep "desarroladores\|diseno" /etc/group
+#add user to group with adduser(high level, debian)
+adduser $USER root marketing
+#see current status
+id $USER root
+grep $USER root /etc/group
