@@ -35,3 +35,8 @@ sudo groupadd desarrolladores
 sudo groupadd -g 2000 operaciones #GID especifico
 #system group (GID<1000)
 sudo groupadd --system serivicios_web
+#verify to create
+grep "desarrolladores\|operaciones\|serivcios_web" /etc/goup
+grep -E "desarrolladores|operaciones|servicios_web" /etc/group
+#View principal options
+groupadd --help
