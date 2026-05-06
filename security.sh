@@ -72,3 +72,10 @@ adduser $USER root marketing
 #see current status
 id $USER root
 grep $USER root /etc/group
+#create a temporary group for a the demo
+groupadd grupo_temporal
+usermod -aG grupo_temporal $USER root
+#Now  the error :usermod without -a
+usermod -G desarrolladores $USER roo
+#this removes all secondary groups except "desarroladores"
+id $USER #lost all other groups
