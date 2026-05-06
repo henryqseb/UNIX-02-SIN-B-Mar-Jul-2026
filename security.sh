@@ -57,3 +57,10 @@ sudo addgroup --gid 2100 marketing
 sudo addgroup --system cache_web
 #Verify
 grep "diseno\|marketing\|cache_web" /etc/group
+
+#see witch groups the current user belongs to
+groups
+id
+#Add a user to a group with usermod (low level)
+sudo usermod -aG desarrolladores $USER
+sudo usermod -aG diseño $USER
