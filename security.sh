@@ -26,3 +26,12 @@ cat /etc/gshadow | head -n 5
 #Display the first five lines of the /etc/gshadow 
 #file, which contains the encrypted passwords and administrative in
 #formation for the system groups.
+
+#addgroup, groupadd, chgrp, newgrp
+#basic sintax
+#groupadd [opciones] nombre_grupo
+#create a simple group
+sudo groupadd desarrolladores
+sudo groupadd -g 2000 operaciones #GID especifico
+#system group (GID<1000)
+sudo groupadd --system serivicios_web
