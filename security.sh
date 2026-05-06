@@ -91,5 +91,10 @@ touch ~/lab_chgrp/scripts/deploy.sh
 #View the initial state -- everyone has the usergroup
 ls -la ~/lab_chgrp/reportes/
 ls -la ~/lab_chgrp/reportes/
+#Change the group of the file
+chgrp desarrolladores ~/lab_chgrp/proyectos/app.py
+ls -la ~/lab_chgrp/proyectos
+
+
 
 
