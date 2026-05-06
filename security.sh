@@ -24,4 +24,5 @@ cat /etc/group | head -n 5
 #exposing the basic configuration of the first five user groups defined in the system.
 cat /etc/gshadow | head -n 5
 #Display the first five lines of the /etc/gshadow 
-#file, which contains the encrypted passwords and administrative information for the system groups.
+#file, which contains the encrypted passwords and administrative in
+#formation for the system groups.
