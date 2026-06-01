@@ -15,3 +15,6 @@ df -h
 #$bash -r  blackhatbash1.sh
 #This command runs the script in restricted mode, 
 #drastically limiting the privileges and functions allowed to increase security during its execution.
+
+#bash -n  blackhatbash1.sh
+#The command bash -n blackhatbash1.sh checks the script's syntax for errors without executing any of the instructions contained within it.
