@@ -11,3 +11,7 @@ df -h
 #bash blackhatbash1.sh
 #The command executes an automated sequence of instructions 
 #defined in the blackhatbash1.sh file using the Bash interpreter to perform specific administration or security tasks.
+
+#$bash -r  blackhatbash1.sh
+#This command runs the script in restricted mode, 
+#drastically limiting the privileges and functions allowed to increase security during its execution.
