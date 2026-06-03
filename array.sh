@@ -12,3 +12,7 @@ echo "${IP_ADDRESSES[0]}"
 #delate the second IP and print all IP to check if it has been removed
 unset IP_ADDRESSES[1]
 echo "${IP_ADDRESSES[*]}"
+
+#Modify one of the variables
+IP_ADDRESSES[0]="192.168.1.10"
+echo "${IP_ADDRESSES[*]}"
