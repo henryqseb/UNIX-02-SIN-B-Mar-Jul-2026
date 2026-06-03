@@ -1,3 +1,4 @@
+#! /bin/bash
 bash --version
 env
 echo ${SHELL }
@@ -18,3 +19,5 @@ df -h
 
 #bash -n  blackhatbash1.sh
 #The command bash -n blackhatbash1.sh checks the script's syntax for errors without executing any of the instructions contained within it.
+
+set+x
