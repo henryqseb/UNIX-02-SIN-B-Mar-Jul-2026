@@ -22,3 +22,8 @@ cat archivo.txt
 echo "tres" &> archivo.txt
 cat archivo.txt
 echo "tres" &>> archivo.txt
+
+cat < output.txt
+cat << EOF
+Black Hat Bash by No Starch Press
+EOF
