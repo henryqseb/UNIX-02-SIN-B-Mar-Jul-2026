@@ -5,6 +5,8 @@ SCRIPT_NAME="${0}"
 TARGET="${1}"
 echo "Running the script ${SCRIPT_NAME}..."
 echo "Pinging the target: ${TARGET}..."
-ping "${TARGET}"
+ping -c 3 "${TARGET}"
 
-bash -x ping_with_arguments.sh 127.0.0.1
+
+echo "The arguments are: $@"
+echo "The total number of arguments is: $#"
