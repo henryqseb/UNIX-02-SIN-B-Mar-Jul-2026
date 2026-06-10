@@ -22,3 +22,15 @@ else
 echo "User is not root!"
 # Displays a message indicating that the current user does not have root privileges.
 fi
+
+# Create the user (requires root)
+#useradd -m elbicho
+
+# Assign a password
+#passwd elbicho
+
+# Switch to the new user
+#su - elbicho
+
+# Run the script as that user
+#bash check_root_function.sh
