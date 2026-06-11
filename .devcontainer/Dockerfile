@@ -85,38 +85,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LC_ALL=es_ES.UTF-8 \
     TERM=xterm-256color
 # ----------------------------------------------------------------------------
-# (d) RUN debconf-set-selections — pre-answer Wireshark's interactive prompt
-# ----------------------------------------------------------------------------
-# When Wireshark/tshark is installed, its post-install script asks:
-#   "Should non-superusers be able to capture packets?"
-# Because DEBIAN_FRONTEND=noninteractive silences apt, the safest fix is
-# to pre-load the answer ("false" = only root can capture, which is fine
-# since the container runs as root) into the debconf database BEFORE apt.
-#
-# The pipe "|" sends the text printed by echo directly into
-# debconf-set-selections as its standard input.  BHB Ch. 1 explains the
-# pipe operator: "redirects the output of a command and uses it as the
-# input of another" (Table 1-4, Redirection Operators).  This is a
-# classic Unix pipe — one command's stdout feeds another's stdin.
-RUN echo "wireshark-common wireshark-common/install-setuid boolean false" \
-    | debconf-set-selections 
-# ----------------------------------------------------------------------------
-# (d) RUN debconf-set-selections — pre-answer Wireshark's interactive prompt
-# ----------------------------------------------------------------------------
-# When Wireshark/tshark is installed, its post-install script asks:
-#   "Should non-superusers be able to capture packets?"
-# Because DEBIAN_FRONTEND=noninteractive silences apt, the safest fix is
-# to pre-load the answer ("false" = only root can capture, which is fine
-# since the container runs as root) into the debconf database BEFORE apt.
-#
-# The pipe "|" sends the text printed by echo directly into
-# debconf-set-selections as its standard input.  BHB Ch. 1 explains the
-# pipe operator: "redirects the output of a command and uses it as the
-# input of another" (Table 1-4, Redirection Operators).  This is a
-# classic Unix pipe — one command's stdout feeds another's stdin.
-RUN echo "wireshark-common wireshark-common/install-setuid boolean false" \
-    | debconf-set-selections
-# ----------------------------------------------------------------------------
 # (e) RUN apt-get update && apt-get install … — the main package install
 # ----------------------------------------------------------------------------
 # Everything is chained into ONE single RUN for an important reason:
@@ -259,5 +227,35 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # === Human-friendly HTTP client ===
     httpie \
     \
+# ----------------------------------------------------------------------------
+# (f) sed + locale-gen — enable the Spanish UTF-8 locale
+# ----------------------------------------------------------------------------
+# /etc/locale.gen lists every available locale; lines starting with "#"
+# are disabled.  The sed command uses the s/old/new/ substitution to
+# remove the comment character from the "es_ES.UTF-8" line, activating
+# it.  Then locale-gen compiles the binary locale files that glibc uses
+# at runtime.
+# BHB Ch. 2 demonstrates sed's substitution command: "sed 's/Mozilla/
+# Godzilla/g' log.txt" — same pattern used here to uncomment the line.
+# The -i flag makes the change in-place on the actual file, just as BHB
+# Ch. 2 shows with "sed -i '1d' log.txt".
+    && sed -i 's/# es_ES.UTF-8/es_ES.UTF-8/' /etc/locale.gen \
+    && locale-gen \
+    \
+# ----------------------------------------------------------------------------
+# (g) apt-get clean + rm -rf /var/lib/apt/lists/* — shrink the image
+# ----------------------------------------------------------------------------
+# After installation, apt leaves two kinds of waste on disk:
+#   1. Downloaded .deb package files → "apt-get clean" deletes them.
+#   2. Package index files from "apt-get update" stored in
+#      /var/lib/apt/lists/ → "rm -rf" removes them entirely.
+#
+# Both deletions happen inside THIS SAME RUN instruction.  If we put
+# them in a separate RUN later, those files would still exist in the
+# earlier layer and still contribute to the final image size.  Keeping
+# everything in one RUN means the committed layer never contained those
+# files in the first place — the image stays as small as possible.
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 
