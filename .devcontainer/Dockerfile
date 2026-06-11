@@ -313,5 +313,75 @@ RUN git config --system --add safe.directory '*' \
     && git config --system init.defaultBranch main \
     && git config --system pull.rebase false \
     && git lfs install --system
+# ----------------------------------------------------------------------------
+# (k) chsh — change the default login shell to zsh
+# ----------------------------------------------------------------------------
+# "chsh -s" (change shell) updates the entry in /etc/passwd for the
+# root user, replacing the default login shell with /usr/bin/zsh.
+# /etc/passwd stores one record per user; the last field is the program
+# the OS launches when that user opens a terminal session.
+#
+# BHB Ch. 1 explains this exact command: "if you want to change your
+# default shell to bash so you don't have to manually switch shells, you
+# can use the chsh -s /bin/bash command" — here we apply the same idea
+# but choose zsh instead.  BHB Ch. 3 also notes that newer Kali releases
+# use zsh by default, which is consistent with this choice.
+RUN chsh -s /usr/bin/zsh root
+# ----------------------------------------------------------------------------
+# (l) here-document (cat >> /root/.zshrc <<'EOF' … EOF) — custom prompt
+# ----------------------------------------------------------------------------
+# A here-document is a multi-line string literal embedded in a shell
+# script.  BHB Ch. 1 Table 1-4 (Redirection Operators) defines "<<" as:
+# "called a here document, or heredoc, redirects multiple input lines to
+# a command."  The example in BHB Ch. 1 uses "cat << EOF … EOF" to pass
+# multiple lines as input to a command — exactly the syntax used here.
+#
+# The single quotes around 'EOF' prevent the shell from expanding
+# variables or backslashes inside the block — what you type is exactly
+# what gets written (no accidental substitutions).
+#
+# "cat >>" appends the here-doc content to the end of /root/.zshrc.
+# .zshrc is sourced every time an interactive zsh session starts, so
+# everything inside runs in every new terminal.  BHB Ch. 1 explains that
+# ">>" appends to existing content without overwriting it (Table 1-4).
+#
+# What the PROMPT line configures:
+#   PROMPT is zsh's equivalent of bash's PS1 — the string displayed
+#   before every command.  The escape codes used here:
+#     %F{cyan}  — switch text color to cyan
+#     [name]    — the student's identifier in brackets
+#     %f        — reset color to default
+#     %F{yellow}%1~%f — current directory (last component) in yellow
+#     %#        — shows "#" when running as root, "%" for normal users
+#   This gives a compact, colorful prompt showing who you are and where
+#   you are in the filesystem.  BHB Ch. 1 shows the env variable SHELL
+#   and discusses how the prompt reflects the shell environment.
+RUN cat >> /root/.zshrc <<'EOF'
+# ===== Course prompt =====
+PROMPT='%F{cyan}[Henry_Qijia]%f %F{yellow}%1~%f %# '
+EOF
+# ----------------------------------------------------------------------------
+# (m) CMD — the default command run when the container starts
+# ----------------------------------------------------------------------------
+# CMD specifies what process to launch when someone runs "docker run"
+# without explicitly specifying a command.
+#
+# Difference between RUN and CMD — important distinction:
+#   RUN executes during the BUILD phase to modify the image (install
+#       packages, write config files, etc.).  Its result is baked into
+#       a layer permanently.
+#   CMD is NOT executed at build time.  It is metadata stored in the
+#       image that Docker reads at RUNTIME to know what process to start.
+#
+# CMD ["/usr/bin/zsh"] launches an interactive zsh shell as PID 1 inside
+# the container.  PID 1 is the first process the kernel starts in a
+# container; when it exits, the container stops.
+# Using the exec-form (JSON array) instead of the shell-form means
+# Docker runs zsh directly — not wrapped in "sh -c" — so signals are
+# delivered correctly.
+# BHB Ch. 3 explains that containers package code and dependencies so an
+# application runs reliably; the CMD defines what that "application" is
+# — in our case, an interactive zsh terminal for the course.
+CMD ["/usr/bin/zsh"]
 
 
