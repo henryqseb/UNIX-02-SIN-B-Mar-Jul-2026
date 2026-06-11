@@ -257,5 +257,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # files in the first place — the image stays as small as possible.
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+# ----------------------------------------------------------------------------
+# (h) SHELL — switch subsequent RUN steps from sh to bash
+# ----------------------------------------------------------------------------
+# By default Docker executes RUN commands with /bin/sh, the minimal
+# POSIX shell.  BHB Ch. 3 notes that newer Kali releases use zsh by
+# default and shows "sudo usermod --shell /bin/bash kali" to set bash
+# as the default shell — the same concept applies here.  sh lacks
+# Bash-specific syntax: arrays, [[ ]], process substitution, etc.
+# Switching to bash ensures any RUN instruction added later can use the
+# full Bash feature set that BHB Ch. 1 and Ch. 2 teach.
+SHELL ["/bin/bash", "-c"]
+# ----------------------------------------------------------------------------
+# (i) WORKDIR — set the default working directory
+# ----------------------------------------------------------------------------
+# WORKDIR sets the directory that subsequent RUN, COPY, and CMD
+# instructions — and the shell you get when you open a terminal inside
+# the container — will start from.  BHB Ch. 1 uses "cd ~" (tilde = home
+# directory of the current user) to navigate before running scripts —
+# WORKDIR is the Docker equivalent of that cd, applied at build time.
+# GitHub Codespaces mounts the repository at /workspaces/<repo-name>,
+# so setting /workspaces here means every terminal session opens one
+# level above the project files, which is the expected Codespace layout.
+WORKDIR /workspaces
 
 
