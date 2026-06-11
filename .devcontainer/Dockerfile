@@ -47,6 +47,43 @@ FROM kalilinux/kali-rolling:latest
 # BHB Ch. 3 introduces Docker as a tool for deploying and managing
 # containers where code and dependencies are packaged together so the
 # application runs reliably in various environments.
+# ----------------------------------------------------------------------------
+# (c) ENV — persistent environment variables inside the container
+# ----------------------------------------------------------------------------
+# Environment variables are named key=value pairs that any process
+# running inside the container can read.  BHB Ch. 1 explains that when
+# bash starts a new session it loads a set of environment variables —
+# you can list them all with the "env" command.  Programs use them to
+# discover settings like the default shell, the home directory, or the
+# character encoding in use.  Writing them in UPPERCASE is a Unix
+# convention (e.g. SHELL, LANG, PATH in BHB Ch. 1 examples).
+#
+# DEBIAN_FRONTEND=noninteractive
+#   Tells apt (the Debian package manager) to run in fully automatic
+#   mode: never pause and ask the user a question.  Without this, some
+#   packages would freeze the build waiting for keyboard input that will
+#   never come — there is no human at a terminal during a Docker build.
+#
+# LANG=es_ES.UTF-8 / LC_ALL=es_ES.UTF-8
+#   Set the locale — the combination of language, territory, and
+#   character encoding that programs use when displaying text.
+#   UTF-8 is the modern Unicode encoding that supports accented letters
+#   (á, é, ñ), the euro sign (€), and virtually every script on Earth.
+#   Without a proper locale, many CLI tools misbehave with non-ASCII
+#   input.  BHB Ch. 1 shows LANGUAGE as one of the default env vars
+#   loaded by bash (e.g. LANGUAGE=en_CA:en in the env output example).
+#
+# TERM=xterm-256color
+#   Tells the terminal emulator library (ncurses/terminfo) that the
+#   terminal supports 256 colors.  Interactive tools like vim, nvim,
+#   htop, and the zsh prompt use this to display colors correctly.
+#
+# The trailing backslash "\" continues the same logical line across
+# multiple lines — purely cosmetic, for readability.
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=es_ES.UTF-8 \
+    LC_ALL=es_ES.UTF-8 \
+    TERM=xterm-256color
 
 
 
