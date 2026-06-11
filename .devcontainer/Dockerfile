@@ -1,3 +1,4 @@
+#! /bin/bash
 # ============================================================================
 # Dockerfile — Build recipe for the course development container
 # ============================================================================
@@ -280,5 +281,37 @@ SHELL ["/bin/bash", "-c"]
 # so setting /workspaces here means every terminal session opens one
 # level above the project files, which is the expected Codespace layout.
 WORKDIR /workspaces
+# ----------------------------------------------------------------------------
+# (j) RUN git config + git lfs install — global Git settings
+# ----------------------------------------------------------------------------
+# These four commands configure Git at the system level:
+#
+#   safe.directory '*'
+#     When a repo's files are owned by a different UID than the process
+#     reading them (common in Docker where the host mounts a directory),
+#     Git refuses to operate for security reasons.  '*' tells Git to
+#     trust all directories — necessary for git commands to work inside
+#     /workspaces mounts.
+#
+#   init.defaultBranch main
+#     Changes the branch name created by "git init" from the old default
+#     "master" to "main", avoiding deprecation warnings.  BHB Ch. 3
+#     uses "git clone" to download the book's repository — having a
+#     consistent default branch avoids surprises.
+#
+#   pull.rebase false
+#     When "git pull" finds divergent histories it must reconcile them.
+#     "rebase false" means it merges instead of rebasing, creating an
+#     explicit merge commit — clearer for beginners.
+#
+#   git lfs install --system
+#     Git Large File Storage (LFS) replaces large binary files in the
+#     repo with tiny pointer files.  "--system" registers the LFS hooks
+#     globally so any repository cloned inside this container uses LFS
+#     automatically without per-repo setup.
+RUN git config --system --add safe.directory '*' \
+    && git config --system init.defaultBranch main \
+    && git config --system pull.rebase false \
+    && git lfs install --system
 
 
