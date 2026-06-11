@@ -84,7 +84,22 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=es_ES.UTF-8 \
     LC_ALL=es_ES.UTF-8 \
     TERM=xterm-256color
-
+# ----------------------------------------------------------------------------
+# (d) RUN debconf-set-selections — pre-answer Wireshark's interactive prompt
+# ----------------------------------------------------------------------------
+# When Wireshark/tshark is installed, its post-install script asks:
+#   "Should non-superusers be able to capture packets?"
+# Because DEBIAN_FRONTEND=noninteractive silences apt, the safest fix is
+# to pre-load the answer ("false" = only root can capture, which is fine
+# since the container runs as root) into the debconf database BEFORE apt.
+#
+# The pipe "|" sends the text printed by echo directly into
+# debconf-set-selections as its standard input.  BHB Ch. 1 explains the
+# pipe operator: "redirects the output of a command and uses it as the
+# input of another" (Table 1-4, Redirection Operators).  This is a
+# classic Unix pipe — one command's stdout feeds another's stdin.
+RUN echo "wireshark-common wireshark-common/install-setuid boolean false" \
+    | debconf-set-selections 
 
 
 
