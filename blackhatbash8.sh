@@ -9,3 +9,7 @@ awk '{print $2}' log.txt
 awk '{$3}' log.txt
 
 awk '{print $1,$NF}' log.txt
+
+awk 'NR < 10' log.txt
+
+head log.txt
